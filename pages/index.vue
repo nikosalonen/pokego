@@ -1,34 +1,98 @@
 <template>
-  <div class="container">
-    <div>
-      <h1 class="title">
-        Pokemon Go codes!
-      </h1>
-      <button @click="writeToFirestore()" color="primary" outlined>
-        Write to Firestore
-      </button>
+  <div class="container mx-auto">
+    <div class="max-w-lg mx-auto p-10 bg-white rounded-lg shadow-xl">
+      <div class="sm:flex sm:items-center px-6 py-4">
+        <img
+          class="block mx-auto sm:mx-0 sm:flex-shrink-0 h-12 sm:h-16"
+          src="~/static/pokeball.png"
+        />
+        <div class="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
+          <h1 class="text-xl text-gray-900 leading-tight">
+            Pokemon Go codes!
+          </h1>
+          <div class="flex items-center py-2">
+            <p class="text-base text-gray-600 leading-tight">
+              save my code as <br />
+              http://pokego.codes/
+              <input v-model="handle" type="text" />
+            </p>
+          </div>
+          <div class="mt-4">
+            <h2>My code is:</h2>
+            <form class="w-full max-w-sm">
+              <div class="flex items-center py-2">
+                <input
+                  v-model="code1"
+                  maxlength="4"
+                  nimlength="4"
+                  type="number"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+                -
+                <input
+                  v-model="code2"
+                  maxlength="4"
+                  nimlength="4"
+                  type="number"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+                -
+                <input
+                  v-model="code3"
+                  maxlength="4"
+                  nimlength="4"
+                  type="number"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="mt-4 flex justify-end">
+            <button
+              @click="writeToFirestore()"
+              class=" flex-shrink-0  bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+              color="primary"
+              outlined
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 // import Logo from '~/components/Logo.vue'
+import { fireDB } from '~/plugins/firestore.js'
 
 export default {
   components: {},
+  data() {
+    return {
+      handle: '',
+      code1: '',
+      code2: '',
+      code3: ''
+    }
+  },
   methods: {
-    async writeToFirestore() {
-      const messageRef = this.$fireStore.collection('users').doc('Nuxt!')
-      try {
-        await messageRef.set({
-          handle: 'Nuxt!',
-          code: Math.random() * 10 - 1
+    writeToFirestore() {
+      fireDB
+        .collection('users')
+        .add({
+          handle: this.handle,
+          code: this.code1 + '-' + this.code2 + '-' + this.code3
         })
-      } catch (e) {
-        alert(e)
-        return
-      }
-      alert('Success.')
+        .then((res) => {
+          // eslint-disable-next-line
+          console.log('Document written with ID: ', res.id)
+        })
+        .catch((e) => alert(e))
+        .finally(() => {
+          // redirect to user page
+        })
     }
   }
 }
@@ -40,34 +104,8 @@ export default {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.pokeball {
+  max-width: 50px;
+  height: auto;
 }
 </style>

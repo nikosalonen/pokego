@@ -5,7 +5,7 @@
   "author": "Niko Salonen",
   "private": true,
   "scripts": {
-    "dev": "nuxt  --hostname 0.0.0.0",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -24,8 +24,7 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "firebase": "^7.6.2",
-    "nuxt": "^2.0.0",
-    "nuxt-fire": "^3.5.4"
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
