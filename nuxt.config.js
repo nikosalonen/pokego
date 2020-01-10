@@ -45,7 +45,25 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    [
+      'nuxt-fire',
+      {
+        config: {
+          apiKey: '***REMOVED***',
+          authDomain: 'pokego-codes.firebaseapp.com',
+          databaseURL: 'https://pokego-codes.firebaseio.com',
+          projectId: 'pokego-codes',
+          storageBucket: 'pokego-codes.appspot.com',
+          messagingSenderId: '136869508515',
+          appId: '1:136869508515:web:8cb0a817f1948e44089616',
+          measurementId: 'G-BXL4T7PDHM'
+        },
+        services: {
+          firestore: true // Just as example. Can be any other service.
+        }
+      }
+    ]
   ],
   /*
    ** Axios module configuration
@@ -59,6 +77,21 @@ export default {
     /*
      ** You can extend webpack config here
      */
+
+    babel: {
+      presets({ isServer }) {
+        return [
+          [
+            require.resolve('@nuxt/babel-preset-app'),
+            // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
+            {
+              buildTarget: isServer ? 'server' : 'client',
+              corejs: { version: 3 }
+            }
+          ]
+        ]
+      }
+    },
     extend(config, ctx) {}
   }
 }
