@@ -88,7 +88,7 @@
                   https://pokego.codes/{{ handle }}
                 </span>
                 If you want to edit your code you can use this link:
-                <nuxt-link to="/edit"
+                <nuxt-link :to="editPageLink"
                   >https://pokego.codes/edit/{{ result }}</nuxt-link
                 >
                 <!-- <router-link to="https://pokego.codes/edit/{{ result }}"
@@ -105,7 +105,6 @@
 </template>
 
 <script>
-// import Logo from '~/components/Logo.vue'
 import { fireDB } from '~/plugins/firestore.js'
 
 export default {
@@ -117,7 +116,8 @@ export default {
       code1: '',
       code2: '',
       code3: '',
-      result: ''
+      result: '',
+      editPageLink: ''
     }
   },
   methods: {
@@ -142,7 +142,6 @@ export default {
       }
     },
     async checkHandle() {
-      // Create a reference to the cities collection
       const handleFound = await fireDB
         .collection('users')
         .where('handle', '==', this.handle)
@@ -167,6 +166,7 @@ export default {
             // eslint-disable-next-line
           console.log('Document written with ID: ', res.id)
             this.result = res.id
+            this.editPageLink = '/edit/' + res.id
           })
           .catch((e) => alert(e))
           .finally(() => {})
