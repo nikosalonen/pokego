@@ -14,14 +14,21 @@
           <div class="mt-4">
             <h2>The friend code is:</h2>
 
-            <div class="flex items-stretch py-2">
+            <div class="flex flex-row justify-center items-stretch py-2">
               <span
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight"
               >
                 {{ user.code[0] }}-{{ user.code[1] }}-{{ user.code[2] }}
               </span>
-              Or read this QR code:
-              <canvas id="canvas"></canvas>
+            </div>
+            <div class="flex flex-col items-center py-2 justify-center">
+              <p>
+                You can also use this QR code:
+              </p>
+              <canvas
+                id="canvas"
+                class="block object-contain h-48 w-full border border-solid"
+              ></canvas>
             </div>
           </div>
         </div>
