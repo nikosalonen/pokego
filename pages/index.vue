@@ -94,7 +94,7 @@
                 <!-- <router-link to="https://pokego.codes/edit/{{ result }}"
                   >https://pokego.codes/edit/{{ result }}</router-link
                 > -->
-                > -- Don't lose it! There's no way to recover it.
+                -- Don't lose it! There's no way to recover it.
               </p>
             </div>
           </div>
