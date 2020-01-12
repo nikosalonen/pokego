@@ -38,7 +38,7 @@
 </template>
 
 <script>
-// import { fireDB } from '~/plugins/firestore.js'
+import { fireDB } from '~/plugins/firestore.js'
 export default {
   components: {},
   data() {
@@ -48,39 +48,28 @@ export default {
       result: ''
     }
   },
-  asyncData({ params, error }) {
+  async asyncData({ params, error }) {
     // eslint-disable-next-line
 
-    return { user: { handle: 'dmni', code: ['1234', '1234', '1234'] } }
-    // const user = await fireDB
-    //   .collection('users')
-    //   .where('handle', '==', params.id)
-    //   .get()
-    //   .then((qs) => {
-    //     let run = false
-    //     const user = qs.forEach(function(doc) {
-    //       if (!run) {
-    //         run = true
+    // return { user: { handle: 'dmni', code: ['1234', '1234', '1234'] } }
+    const user = await fireDB
+      .collection('users')
+      .where('handle', '==', params.id)
+      .get()
+      .then((qs) => {
+        if (!qs.empty) {
+          const user = qs.docs[0]
+          return user.data()
+        }
+      })
+    if (user.code) {
+      // eslint-disable-next-line
+          console.log(user.code)
+      const codeSplit = '' + user.code
+      user.code = codeSplit.match(/\d{4}/g)
+    }
 
-    //         // doc.data() is never undefined for query doc snapshots
-    //         // eslint-disable-next-line
-    //         console.log(doc.data())
-    //         return doc.data()
-    //       }
-    //     })
-
-    //     return user
-    //     // eslint-disable-next-line
-
-    //     // return qs.data()
-    //   })
-    // // if (user.code) {
-    // //   const codeSplit = '' + user.code
-    // //   user.code = codeSplit.match(/\d{4}/g)
-    // // }
-    // // eslint-disable-next-line
-    //       console.log(user)
-    // return user
+    return { user }
   },
   created: () => {
     if (process.client) {
