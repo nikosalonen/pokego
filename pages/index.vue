@@ -85,7 +85,9 @@
                 <span
                   class="block border border-solid rounded my-4 items-center"
                 >
-                  https://pokego.codes/{{ handle }}
+                  <nuxt-link :to="userPageLink"
+                    >https://pokego.codes/edit/{{ result }}</nuxt-link
+                  >
                 </span>
                 If you want to edit your code you can use this link:
                 <nuxt-link :to="editPageLink"
@@ -117,7 +119,8 @@ export default {
       code2: '',
       code3: '',
       result: '',
-      editPageLink: ''
+      editPageLink: '',
+      userPageLink: ''
     }
   },
   methods: {
@@ -147,8 +150,6 @@ export default {
         .where('handle', '==', this.handle)
         .get()
         .then((qs) => {
-          // // eslint-disable-next-line
-          // console.log(qs.size)
           return qs.size
         })
       return handleFound
@@ -163,10 +164,9 @@ export default {
             code: Number(this.code1 + '' + this.code2 + '' + this.code3)
           })
           .then((res) => {
-            // eslint-disable-next-line
-          console.log('Document written with ID: ', res.id)
             this.result = res.id
             this.editPageLink = '/edit/' + res.id
+            this.userPageLink = '/' + this.handle
           })
           .catch((e) => alert(e))
           .finally(() => {})
@@ -184,8 +184,4 @@ export default {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-.pokeball {
-  max-width: 50px;
-  height: auto;
-}
 </style>
