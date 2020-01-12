@@ -12,11 +12,11 @@
           </h1>
 
           <div class="mt-4">
-            <h2>My friend code is:</h2>
-            <form id="form" @submit="checkForm" class="w-full max-w-sm">
+            <h2>Your friend code is:</h2>
+            <form id="form" @submit="updateUser" class="w-full max-w-sm">
               <div class="flex items-stretch py-2">
                 <input
-                  v-model="code1"
+                  v-model="user.code[0]"
                   maxlength="4"
                   nimlength="4"
                   type="number"
@@ -24,7 +24,7 @@
                 />
                 -
                 <input
-                  v-model="code2"
+                  v-model="user.code[1]"
                   maxlength="4"
                   nimlength="4"
                   type="number"
@@ -32,7 +32,7 @@
                 />
                 -
                 <input
-                  v-model="code3"
+                  v-model="user.code[2]"
                   maxlength="4"
                   nimlength="4"
                   type="number"
@@ -83,7 +83,8 @@ export default {
   data() {
     return {
       errors: [],
-      user: {}
+      user: {},
+      result: ''
     }
   },
   async asyncData({ params, error }) {
@@ -96,24 +97,47 @@ export default {
 
         return qs.data()
       })
-    // eslint-disable-next-line
-    user.code1
+    if (user.code) {
+      const codeSplit = '' + user.code
+      user.code = codeSplit.match(/\d{4}/g)
+    }
     return { user }
   },
   methods: {
-    async getUser() {
-      const handleFound = await fireDB
+    updateFirestore() {
+      // eslint-disable-next-line
+      console.log(this.$route.params.id)
+
+      fireDB
         .collection('users')
         .doc(this.$route.params.id)
-        .get()
-        .then((qs) => {
-          // // eslint-disable-next-line
-          // console.log(qs.size)
-          return qs.data()
+        .update({
+          code: Number(this.user.code.join(''))
         })
-      // eslint-disable-next-line
-      debugger
-      return handleFound
+        .then(() => {
+          // eslint-disable-next-line
+          console.log('Document updated!')
+          this.result = true
+        })
+        .catch((e) => alert('Error updating document: ', e))
+        .finally(() => {})
+    },
+    updateUser(e) {
+      e.preventDefault()
+      this.errors = []
+
+      const regex = /^\d{4}$/
+      if (
+        !this.user.code[0].match(regex) ||
+        !this.user.code[1].match(regex) ||
+        !this.user.code[2].match(regex)
+      ) {
+        this.errors.push('Each part of the code should be 4 numbers long')
+      }
+      if (!this.errors.length) {
+        this.updateFirestore()
+        return true
+      }
     }
   }
 }
