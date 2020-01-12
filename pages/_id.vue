@@ -51,34 +51,36 @@ export default {
     //   .get()
     //   .then((qs) => {
     //     let run = false
-    //     return qs.forEach(function(doc) {
+    //     const user = qs.forEach(function(doc) {
     //       if (!run) {
     //         run = true
 
     //         // doc.data() is never undefined for query doc snapshots
     //         // eslint-disable-next-line
-    //       console.log(doc.id, ' => ', doc.data())
+    //         console.log(doc.data())
     //         return doc.data()
     //       }
     //     })
+
+    //     return user
     //     // eslint-disable-next-line
 
     //     // return qs.data()
     //   })
-    // if (user.code) {
-    //   const codeSplit = '' + user.code
-    //   user.code = codeSplit.match(/\d{4}/g)
-    // }
+    // // if (user.code) {
+    // //   const codeSplit = '' + user.code
+    // //   user.code = codeSplit.match(/\d{4}/g)
+    // // }
     // // eslint-disable-next-line
     //       console.log(user)
-    // return { user }
+    // return user
   },
   created: () => {
     if (process.client) {
       const QRCode = require('qrcode')
       const canvas = document && document.getElementById('canvas')
 
-      QRCode.toCanvas(canvas, '1234-1234-1234', (error) => {
+      QRCode.toCanvas(canvas, '123412341234', (error) => {
         // eslint-disable-next-line
       if (error) console.error(error)
         // eslint-disable-next-line
