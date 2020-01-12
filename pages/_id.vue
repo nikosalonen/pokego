@@ -20,6 +20,8 @@
               >
                 {{ user.code[0] }}-{{ user.code[1] }}-{{ user.code[2] }}
               </span>
+              Or read this QR code:
+              <canvas id="canvas"></canvas>
             </div>
           </div>
         </div>
@@ -41,7 +43,7 @@ export default {
   },
   asyncData({ params, error }) {
     // eslint-disable-next-line
-    console.log(params.id)
+
     return { user: { handle: 'dmni', code: ['1234', '1234', '1234'] } }
     // const user = await fireDB
     //   .collection('users')
@@ -70,6 +72,19 @@ export default {
     // // eslint-disable-next-line
     //       console.log(user)
     // return { user }
+  },
+  created: () => {
+    if (process.client) {
+      const QRCode = require('qrcode')
+      const canvas = document && document.getElementById('canvas')
+
+      QRCode.toCanvas(canvas, '1234-1234-1234', (error) => {
+        // eslint-disable-next-line
+      if (error) console.error(error)
+        // eslint-disable-next-line
+      console.log('success!')
+      })
+    }
   },
   methods: {}
 }

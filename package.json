@@ -24,7 +24,8 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "firebase": "^7.6.2",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "qrcode": "^1.4.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
