@@ -21,15 +21,17 @@
                 {{ user.code[0] }}-{{ user.code[1] }}-{{ user.code[2] }}
               </span>
             </div>
-            <div class="flex flex-col items-center py-2 justify-center">
-              <p>
-                You can also use this QR code:
-              </p>
-              <canvas
-                id="canvas"
-                class="block object-contain h-48 w-full border border-solid"
-              ></canvas>
-            </div>
+            <client-only placeholder="Loading...">
+              <div class="flex flex-col items-center py-2 justify-center">
+                <p>
+                  You can also use this QR code:
+                </p>
+                <canvas
+                  id="canvas"
+                  class="block object-contain h-48 w-full border border-solid"
+                ></canvas>
+              </div>
+            </client-only>
           </div>
         </div>
       </div>
@@ -63,25 +65,25 @@ export default {
         }
       })
     if (user.code) {
-      // eslint-disable-next-line
-          console.log(user.code)
       const codeSplit = '' + user.code
       user.code = codeSplit.match(/\d{4}/g)
     }
-
     return { user }
   },
   created: () => {
     if (process.client) {
       const QRCode = require('qrcode')
-      const canvas = document && document.getElementById('canvas')
-
-      QRCode.toCanvas(canvas, '123412341234', (error) => {
-        // eslint-disable-next-line
+      const canvas = document.getElementById('canvas')
+      // eslint-disable-next-line
+      console.log(canvas)
+      if (canvas) {
+        QRCode.toCanvas(canvas, this.user.code, (error) => {
+          // eslint-disable-next-line
       if (error) console.error(error)
-        // eslint-disable-next-line
+          // eslint-disable-next-line
       console.log('success!')
-      })
+        })
+      }
     }
   },
   methods: {}
