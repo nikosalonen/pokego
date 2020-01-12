@@ -1,12 +1,12 @@
 <template>
   <div class="container mx-auto">
     <div class="max-w-lg mx-auto p-10 bg-white rounded-lg shadow-xl">
-      <div class="sm:flex sm:items-center px-6 py-4">
+      <div class="flex flex-col sm:flex sm:items-center px-6 py-4">
         <!-- <img
           class="block mx-auto sm:mx-0 sm:flex-shrink-0 h-12 sm:h-16"
           src="~/static/pokeball.png"
         /> -->
-        <div class="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
+        <div class="mt-4  text-center sm:text-left">
           <h1 class="text-xl text-gray-900 leading-tight">
             Short link your Pokemon Go friend code
           </h1>
@@ -25,33 +25,37 @@
               </span>
             </div>
           </div>
-          <div class="mt-4">
+          <div class="mt-4 flex flex-col">
             <h2>My friend code is:</h2>
-            <form id="form" @submit="checkForm" class="w-full max-w-sm">
-              <div class="flex items-stretch py-2">
-                <input
-                  v-model="code1"
-                  maxlength="4"
-                  nimlength="4"
-                  type="number"
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-                -
-                <input
-                  v-model="code2"
-                  maxlength="4"
-                  nimlength="4"
-                  type="number"
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-                -
-                <input
-                  v-model="code3"
-                  maxlength="4"
-                  nimlength="4"
-                  type="number"
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
+            <form id="form" @submit="checkForm" class=" max-w-sm">
+              <div class="flex flex-wrap -mx-3 mb-2">
+                <div class="w-1/3 px-3 mb-6 md:mb-0">
+                  <input
+                    v-model="code1"
+                    maxlength="4"
+                    nimlength="4"
+                    type="text"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  />
+                </div>
+                <div class="w-1/3 px-3 mb-6 md:mb-0">
+                  <input
+                    v-model="code2"
+                    maxlength="4"
+                    nimlength="4"
+                    type="text"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  />
+                </div>
+                <div class="w-1/3 px-3 mb-6 md:mb-0">
+                  <input
+                    v-model="code3"
+                    maxlength="4"
+                    nimlength="4"
+                    type="text"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  />
+                </div>
               </div>
               <div
                 v-if="errors.length"
@@ -72,8 +76,71 @@
                   outlined
                 />
               </div>
+              <!--
+
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-city"
+              >
+                City
+              </label>
+              <input
+                id="grid-city"
+                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                type="text"
+                placeholder="Albuquerque"
+              />
+            </div>
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-state"
+              >
+                State
+              </label>
+              <div class="relative">
+                <select
+                  id="grid-state"
+                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                >
+                  <option>New Mexico</option>
+                  <option>Missouri</option>
+                  <option>Texas</option>
+                </select>
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                >
+                  <svg
+                    class="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-zip"
+              >
+                Zip
+              </label>
+              <input
+                id="grid-zip"
+                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                type="text"
+                placeholder="90210"
+              />
+            </div>
+          </div> -->
             </form>
           </div>
+
           <div v-if="result" class="mt-4">
             <div
               class="bg-teal-100 border border-teal-400 text-teal-700 px-4 py-3 rounded relative"
