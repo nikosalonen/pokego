@@ -11,33 +11,43 @@
             Hello {{ user.handle }}
           </h1>
 
-          <div class="mt-4">
+          <div class="mt-4 flex flex-col">
             <h2>Your friend code is:</h2>
-            <form id="form" @submit="updateUser" class="w-full max-w-sm">
-              <div class="flex items-stretch py-2">
-                <input
-                  v-model="user.code[0]"
-                  maxlength="4"
-                  nimlength="4"
-                  type="number"
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-                -
-                <input
-                  v-model="user.code[1]"
-                  maxlength="4"
-                  nimlength="4"
-                  type="number"
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-                -
-                <input
-                  v-model="user.code[2]"
-                  maxlength="4"
-                  nimlength="4"
-                  type="number"
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
+            <form id="form" @submit="updateUser" class="max-w-sm">
+              <div class="flex flex-wrap -mx-3 mb-2">
+                <div class="w-1/3 px-3 mb-6 md:mb-0">
+                  <input
+                    id="code1"
+                    ref="code1"
+                    v-model="user.code[0]"
+                    maxlength="4"
+                    minlength="4"
+                    type="text"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  />
+                </div>
+                <div class="w-1/3 px-3 mb-6 md:mb-0">
+                  <input
+                    id="code2"
+                    ref="code2"
+                    v-model="user.code[1]"
+                    maxlength="4"
+                    minlength="4"
+                    type="text"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  />
+                </div>
+                <div class="w-1/3 px-3 mb-6 md:mb-0">
+                  <input
+                    id="code3"
+                    ref="code3"
+                    v-model="user.code[2]"
+                    maxlength="4"
+                    minlength="4"
+                    type="text"
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  />
+                </div>
               </div>
               <div
                 v-if="errors.length"
@@ -93,8 +103,6 @@ export default {
       .doc(params.id)
       .get()
       .then((qs) => {
-        // // eslint-disable-next-line
-
         return qs.data()
       })
     if (user.code) {
@@ -115,8 +123,6 @@ export default {
           code: Number(this.user.code.join(''))
         })
         .then(() => {
-          // eslint-disable-next-line
-          console.log('Document updated!')
           this.result = true
         })
         .catch((e) => alert('Error updating document: ', e))
