@@ -73,22 +73,21 @@ export default {
   mounted() {
     if (process.browser) {
       const QRCode = require('qrcode')
-      // eslint-disable-next-line
-    const canvas = document.getElementById('canvas')
-      // eslint-disable-next-line
-    console.log(canvas)
-      if (canvas) {
-        QRCode.toCanvas(canvas, this.user.code, (error) => {
+
+      QRCode.toCanvas(
+        document.getElementById('canvas'),
+        this.user.code,
+        (error) => {
           // eslint-disable-next-line
     if (error) console.error(error)
           // eslint-disable-next-line
     console.log('success!')
-        })
-      }
+        }
+      )
     }
   },
   methods: {}
 }
 </script>
 
-// <style></style>
+<style></style>
