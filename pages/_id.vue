@@ -21,17 +21,16 @@
                 {{ user.code[0] }}-{{ user.code[1] }}-{{ user.code[2] }}
               </span>
             </div>
-            <client-only placeholder="Loading...">
-              <div class="flex flex-col items-center py-2 justify-center">
-                <p>
-                  You can also use this QR code:
-                </p>
-                <canvas
-                  id="canvas"
-                  class="block object-contain h-48 w-full border border-solid"
-                ></canvas>
-              </div>
-            </client-only>
+            <div class="flex flex-col items-center py-2 justify-center">
+              <p>
+                You can also use this QR code:
+              </p>
+              <canvas
+                id="canvas"
+                ref="canvas"
+                class="block object-contain h-48 w-full border border-solid"
+              ></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -47,7 +46,8 @@ export default {
     return {
       errors: [],
       user: {},
-      result: ''
+      result: '',
+      canvas: ''
     }
   },
   async asyncData({ params, error }) {
@@ -70,18 +70,19 @@ export default {
     }
     return { user }
   },
-  created: () => {
-    if (process.client) {
+  mounted() {
+    if (process.browser) {
       const QRCode = require('qrcode')
-      const canvas = document.getElementById('canvas')
       // eslint-disable-next-line
-      console.log(canvas)
+    const canvas = document.getElementById('canvas')
+      // eslint-disable-next-line
+    console.log(canvas)
       if (canvas) {
         QRCode.toCanvas(canvas, this.user.code, (error) => {
           // eslint-disable-next-line
-      if (error) console.error(error)
+    if (error) console.error(error)
           // eslint-disable-next-line
-      console.log('success!')
+    console.log('success!')
         })
       }
     }
