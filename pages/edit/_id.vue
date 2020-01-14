@@ -4,8 +4,8 @@
 
     <div class="mt-4 flex flex-col">
       <h2>Your friend code is:</h2>
-      <form id="form" @submit="updateUser" class="max-w-sm">
-        <div class="flex flex-wrap -mx-3 mb-2">
+      <form id="form" @submit="updateUser" class="max-w">
+        <div class="flex flex-wrap mb-2">
           <div class="w-1/3 px-3 mb-6 md:mb-0">
             <input
               id="code1"
@@ -54,7 +54,7 @@
           <input
             type="submit"
             value="Update"
-            class=" flex-shrink-0  bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+            class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
             color="primary"
             outlined
           />
