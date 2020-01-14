@@ -20,7 +20,7 @@
           >
             <input
               v-model="handle"
-              class="text-center sm:text-left w-full block border border-gray-500 sm:border-none"
+              class="text-center sm:text-left w-full block shadow appearance-none border rounded sm:border-none sm:shadow-none "
               type="text"
               placeholder="AshKetchum"
             />
