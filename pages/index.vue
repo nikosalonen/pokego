@@ -13,14 +13,14 @@
           <div
             class="w-full sm:w-1/2 block sm:inline-block sm:border-b sm:border-b-2 sm:border-gray-500 sm:text-right"
           >
-            https://pokego.codes/
+            {{ SITE_URL }}
           </div>
           <div
             class="w-full sm:w-1/2 block sm:inline-block sm:border-b sm:border-b-2 sm:border-gray-500 text-2xl pt-5 sm:pt-0 sm:text-lg"
           >
             <input
               v-model="handle"
-              class="text-center sm:text-left w-full block shadow appearance-none border rounded sm:border-none sm:shadow-none "
+              class="text-center sm:text-left w-full block shadow appearance-none border rounded sm:border-none sm:shadow-none"
               type="text"
               placeholder="AshKetchum"
             />
@@ -31,7 +31,7 @@
     <div class="mt-4 flex flex-col">
       <h2>My friend code is:</h2>
       <form id="form" @submit="checkForm" class="max-w">
-        <div class="flex flex-wrap  mb-2">
+        <div class="flex flex-wrap mb-2">
           <div class="w-1/3 px-1 sm:px-3 mb-6 md:mb-0">
             <input
               id="code1"
@@ -102,18 +102,14 @@
           <span class="block border border-solid rounded my-4 items-center">
             <strong>
               <nuxt-link :to="userPageLink"
-                >https://pokego.codes/{{ handle }}</nuxt-link
-              ></strong
-            >
+                >{{ SITE_URL }}{{ handle }}</nuxt-link
+              >
+            </strong>
           </span>
           If you want to edit your code you can use this link:
           <nuxt-link :to="editPageLink"
-            >https://pokego.codes/edit/{{ result }}</nuxt-link
-          >
-          <!-- <router-link to="https://pokego.codes/edit/{{ result }}"
-                  >https://pokego.codes/edit/{{ result }}</router-link
-          >-->
-          -- Don't lose it! There's no way to recover it.
+            >{{ SITE_URL }}edit/{{ result }}</nuxt-link
+          >-- Don't lose it! There's no way to recover it.
         </p>
       </div>
     </div>
@@ -135,7 +131,8 @@ export default {
       code3: '',
       result: '',
       editPageLink: '',
-      userPageLink: ''
+      userPageLink: '',
+      SITE_URL: process.env.SITE_URL
     }
   },
   methods: {
