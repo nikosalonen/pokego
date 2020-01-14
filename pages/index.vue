@@ -101,7 +101,7 @@
           giving this link to your friends:
           <span class="block border border-solid rounded my-4 items-center">
             <nuxt-link :to="userPageLink"
-              >https://pokego.codes/edit/{{ result }}</nuxt-link
+              >https://pokego.codes/{{ handle }}</nuxt-link
             >
           </span>
           If you want to edit your code you can use this link:
