@@ -1,12 +1,14 @@
 <template>
   <div>
-    <div v-if="errors">
+    <div v-if="errors.length">
       <h1 class="text-xl text-gray-900 leading-tight">
         Trainer named <strong>{{ $route.params.id }}</strong> can't be found.
         Maybe you mistyped the name?
       </h1>
       <div class="flex flex-col items-center py-10 justify-center">
-        <nuxt-link class="underline pointer-events-auto cursor-pointer" to="/"
+        <nuxt-link
+          class="underline pointer-events-auto cursor-pointer text-teal-400 text-bold"
+          to="/"
           >Create your own link</nuxt-link
         >
       </div>
@@ -34,7 +36,9 @@
           ></canvas>
         </div>
         <div class="flex flex-col items-center py-10 justify-center">
-          <nuxt-link class="underline pointer-events-auto cursor-pointer" to="/"
+          <nuxt-link
+            class="underline pointer-events-auto cursor-pointer text-teal-400 text-bold"
+            to="/"
             >Create your own link</nuxt-link
           >
         </div>
@@ -68,7 +72,8 @@ export default {
         }
       })
     // eslint-disable-next-line
-    console.log(typeof user !== 'undefined')
+    console.log(user)
+
     if (typeof user === 'undefined') {
       return { errors: '404' }
     } else if (typeof user !== 'undefined') {
@@ -78,9 +83,8 @@ export default {
     return { user }
   },
   mounted() {
-    if (process.browser && this.user) {
+    if (process.browser && this.user && this.user.code) {
       const QRCode = require('qrcode')
-
       QRCode.toCanvas(
         document.getElementById('canvas'),
         this.user.code,
