@@ -28,7 +28,16 @@
         </a>
       </div>
       <div>
-        <div class="text-center text-xs text-gray-300 m-auto pt-20">
+        <div class="text-center text-xs text-gray-900 m-auto pt-5">
+          This site is not affiliated with Niantic, Inc. and is only a tool to
+          help share Pokemon Go Friend Code online identifiers.
+          <nuxt-link
+            class="underline pointer-events-auto cursor-pointer text-teal-400 text-bold"
+            to="/privacy"
+            >Privacy policy</nuxt-link
+          >
+        </div>
+        <div class="text-center text-xs text-gray-300 m-auto pt-5">
           Icon made by
           <a
             href="https://www.flaticon.com/authors/darius-dan"
