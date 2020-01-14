@@ -100,8 +100,10 @@
           <strong>All done!</strong> You can now share your friend code by
           giving this link to your friends:
           <span class="block border border-solid rounded my-4 items-center">
-            <nuxt-link :to="userPageLink"
-              >https://pokego.codes/{{ handle }}</nuxt-link
+            <strong>
+              <nuxt-link :to="userPageLink"
+                >https://pokego.codes/{{ handle }}</nuxt-link
+              ></strong
             >
           </span>
           If you want to edit your code you can use this link:
