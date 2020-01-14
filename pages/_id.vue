@@ -44,9 +44,6 @@ export default {
     }
   },
   async asyncData({ params, error }) {
-    // eslint-disable-next-line
-
-    // return { user: { handle: 'dmni', code: ['1234', '1234', '1234'] } }
     const user = await fireDB
       .collection('users')
       .where('handle', '==', params.id)
@@ -73,8 +70,6 @@ export default {
         (error) => {
           // eslint-disable-next-line
           if (error) console.error(error)
-          // eslint-disable-next-line
-          // console.log('success!')
         }
       )
     }
