@@ -11,7 +11,7 @@
           class="flex flex-wrap block mt-1 pt-1 text-lg flex justify-center w-full"
         >
           <div
-            class="w-full sm:w-1/2 block sm:inline-block sm:border-b sm:border-b-2 sm:border-gray-500"
+            class="w-full sm:w-1/2 block sm:inline-block sm:border-b sm:border-b-2 sm:border-gray-500 sm:text-right"
           >
             https://pokego.codes/
           </div>
@@ -20,7 +20,7 @@
           >
             <input
               v-model="handle"
-              class="text-center sm:text-left w-full block"
+              class="text-center sm:text-left w-full block border border-gray-500 sm:border-none"
               type="text"
               placeholder="AshKetchum"
             />
