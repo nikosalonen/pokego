@@ -1,7 +1,7 @@
 {
   "name": "pokego.codes",
   "version": "1.0.0",
-  "description": "Pokemon Go Codes",
+  "description": "Create short, easy to remember url for your Pokemon Go Friend Code",
   "author": "Niko Salonen",
   "private": true,
   "scripts": {
