@@ -27,6 +27,21 @@
           />
         </a>
       </div>
+      <div>
+        <div class="text-center text-xs text-gray-300 m-auto pt-20">
+          Icon made by
+          <a
+            href="https://www.flaticon.com/authors/darius-dan"
+            title="Darius Dan"
+            target="_blank"
+            >Darius Dan</a
+          >
+          from
+          <a href="https://www.flaticon.com/" title="Flaticon" target="_blank"
+            >www.flaticon.com</a
+          >
+        </div>
+      </div>
     </div>
   </div>
 </template>
