@@ -102,9 +102,6 @@ export default {
   },
   methods: {
     updateFirestore() {
-      // eslint-disable-next-line
-      console.log(this.$route.params.id)
-
       fireDB
         .collection('users')
         .doc(this.$route.params.id)
