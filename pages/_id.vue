@@ -9,7 +9,7 @@
 
       <div class="flex flex-row justify-center items-stretch py-2">
         <span
-          class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight"
+          class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight text-xl"
           >{{ user.code[0] }}-{{ user.code[1] }}-{{ user.code[2] }}</span
         >
       </div>
