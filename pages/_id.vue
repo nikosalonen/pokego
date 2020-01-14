@@ -46,7 +46,7 @@ export default {
   async asyncData({ params, error }) {
     const user = await fireDB
       .collection('users')
-      .where('handle', '==', params.id)
+      .where('handle', '==', params.id.toLowerCase())
       .get()
       .then((qs) => {
         if (!qs.empty) {

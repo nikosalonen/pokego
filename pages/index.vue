@@ -172,7 +172,7 @@ export default {
     async checkHandle() {
       const handleFound = await fireDB
         .collection('users')
-        .where('handle', '==', this.handle)
+        .where('handle', '==', this.handle.toLowerCase())
         .get()
         .then((qs) => {
           return qs.size
@@ -185,13 +185,13 @@ export default {
         fireDB
           .collection('users')
           .add({
-            handle: this.handle,
+            handle: this.handle.toLowerCase(),
             code: Number(this.code1 + '' + this.code2 + '' + this.code3)
           })
           .then((res) => {
             this.result = res.id
             this.editPageLink = '/edit/' + res.id
-            this.userPageLink = '/' + this.handle
+            this.userPageLink = '/' + this.handle.toLowerCase()
           })
           .catch((e) => alert(e))
           .finally(() => {})
