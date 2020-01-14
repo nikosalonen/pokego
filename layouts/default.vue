@@ -32,7 +32,7 @@
           This site is not affiliated with Niantic, Inc. and is only a tool to
           help share Pokemon Go Friend Code online identifiers.
           <nuxt-link
-            class="underline pointer-events-auto cursor-pointer text-teal-400 text-bold"
+            class="underline pointer-events-auto cursor-pointer text-teal-400 font-bold"
             to="/privacy"
             >Privacy policy</nuxt-link
           >

@@ -7,7 +7,7 @@
       </h1>
       <div class="flex flex-col items-center py-10 justify-center">
         <nuxt-link
-          class="underline pointer-events-auto cursor-pointer text-teal-400 text-bold"
+          class="underline pointer-events-auto cursor-pointer text-teal-400 font-bold"
           to="/"
           >Create your own link</nuxt-link
         >
@@ -37,7 +37,7 @@
         </div>
         <div class="flex flex-col items-center py-10 justify-center">
           <nuxt-link
-            class="underline pointer-events-auto cursor-pointer text-teal-400 text-bold"
+            class="underline pointer-events-auto cursor-pointer text-teal-400 font-bold"
             to="/"
             >Create your own link</nuxt-link
           >
