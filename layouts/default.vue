@@ -49,6 +49,13 @@
           <a href="https://www.flaticon.com/" title="Flaticon" target="_blank"
             >www.flaticon.com</a
           >
+          <br />
+          <small
+            >This site is protected by reCAPTCHA and the Google
+            <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+            <a href="https://policies.google.com/terms">Terms of Service</a>
+            apply.
+          </small>
         </div>
       </div>
     </div>
