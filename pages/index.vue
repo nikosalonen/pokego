@@ -136,6 +136,9 @@ export default {
     }
   },
   methods: {
+    mounted() {
+      this.$recaptcha.init()
+    },
     checkLength(e) {
       // eslint-disable-next-line
       const id = e.target.id
@@ -180,6 +183,14 @@ export default {
       return handleFound
     },
     async writeToFirestore() {
+      try {
+        const token = await this.$recaptcha.execute('login')
+        // eslint-disable-next-line
+        console.log('ReCaptcha token:', token)
+      } catch (error) {
+        // eslint-disable-next-line
+        console.log('Login error:', error)
+      }
       const handleCheckResult = await this.checkHandle()
       if (!handleCheckResult) {
         fireDB
