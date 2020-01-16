@@ -117,7 +117,7 @@
 </template>
 
 <script>
-import { fireDB } from '~/plugins/firestore.js'
+import { fireDB } from '~/plugins/firebase.js'
 
 export default {
   layout: 'default',
