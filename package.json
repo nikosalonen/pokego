@@ -27,7 +27,6 @@
     "@nuxtjs/recaptcha": "^0.6.2",
     "firebase": "^7.6.2",
     "nuxt": "^2.0.0",
-    "nuxt-recaptcha": "^0.1.1",
     "qrcode": "^1.4.4"
   },
   "devDependencies": {

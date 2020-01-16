@@ -6332,11 +6332,6 @@ nuxt-purgecss@^0.2.1:
     purgecss "^1.1.0"
     purgecss-webpack-plugin "^1.4.0"
 
-nuxt-recaptcha@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/nuxt-recaptcha/-/nuxt-recaptcha-0.1.1.tgz#84e1da5344d7527f96954e6972ba4b3f1102f40d"
-  integrity sha512-f1wqRAul55LlJBnBcScxrhMmBVcPOx0sH81KlGgJQEOYIdFGaAuMidfpj0GI+cDH6yaSB1t5E7BSCeLvwekZcg==
-
 nuxt@^2.0.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-2.11.0.tgz#654664fe1a95af2014fd55c38ba2c732bfa5edc5"
