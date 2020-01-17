@@ -1,5 +1,6 @@
 export default {
   mode: 'spa',
+  serverMiddleware: ['~/api/index.js'],
   env: {
     FIRESTORE_APIKEY: process.env.FIRESTORE_APIKEY,
     FIRESTORE_AUTHDOMAIN: process.env.FIRESTORE_AUTHDOMAIN,
@@ -9,7 +10,8 @@ export default {
     FIRESTORE_MESSAGINGSENDERID: process.env.FIRESTORE_MESSAGINGSENDERID,
     FIRESTORE_APPID: process.env.FIRESTORE_APPID,
     FIRESTORE_MEASUREMENTID: process.env.FIRESTORE_MEASUREMENTID,
-    RECAPTCHA_SITEKEY: process.env.RECAPTCHA_SITEKEY
+    RECAPTCHA_SITEKEY: process.env.RECAPTCHA_SITEKEY,
+    RECAPTCHA_SECRET: process.env.RECAPTCHA_SECRET
   },
   /*
    ** Headers of the page
@@ -62,7 +64,6 @@ export default {
       '@nuxtjs/recaptcha',
       {
         hideBadge: true,
-
         version: 3,
         siteKey: '6LdR7c8UAAAAAHeGUi7a2QY1dfOhtBnjI4-Y4wlN'
       }
