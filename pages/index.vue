@@ -198,12 +198,12 @@ export default {
     },
     async reCaptcha() {
       try {
-        const token = await this.$recaptcha.execute('login')
+        // const token = await this.$recaptcha.execute('login')
 
-        const result = await this.verifyToken(token)
-        // eslint-disable-next-line
-        if (!result) return false
-        this.writeToFirestore()
+        // const result = await this.verifyToken(token)
+        // // eslint-disable-next-line
+        // if (!result) return false
+        await this.writeToFirestore()
       } catch (error) {
         // eslint-disable-next-line
         console.log('Login error:', error)
