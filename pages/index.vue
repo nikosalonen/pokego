@@ -135,21 +135,6 @@ export default {
     }
   },
   methods: {
-    async verifyToken(token) {
-      const result = await this.$axios({
-        method: 'post',
-        url: '/api/',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: {
-          secret: process.env.RECAPTCHA_SECRET,
-          response: token
-        }
-      })
-      // eslint-disable-next-line no-console
-      return result.data.success
-    },
     mounted() {
       this.$recaptcha.init()
     },
@@ -182,7 +167,7 @@ export default {
         this.errors.push('Each part of the code should be 4 numbers long')
       }
       if (!this.errors.length) {
-        this.reCaptcha()
+        this.writeToFirestore()
         return true
       }
     },
@@ -196,20 +181,7 @@ export default {
         })
       return handleFound
     },
-    async reCaptcha() {
-      try {
-        // const token = await this.$recaptcha.execute('login')
 
-        // const result = await this.verifyToken(token)
-        // // eslint-disable-next-line
-        // if (!result) return false
-        await this.writeToFirestore()
-      } catch (error) {
-        // eslint-disable-next-line
-        console.log('Login error:', error)
-        return false
-      }
-    },
     async writeToFirestore() {
       const handleCheckResult = await this.checkHandle()
       if (!handleCheckResult) {
