@@ -135,9 +135,6 @@ export default {
     }
   },
   methods: {
-    // mounted() {
-    //   // this.$recaptcha.init()
-    // },
     checkLength(e) {
       // eslint-disable-next-line
       const id = e.target.id
