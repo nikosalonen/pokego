@@ -1,6 +1,5 @@
 export default {
   mode: 'spa',
-  serverMiddleware: ['~/api/index.js'],
   env: {
     FIRESTORE_APIKEY: process.env.FIRESTORE_APIKEY,
     FIRESTORE_AUTHDOMAIN: process.env.FIRESTORE_AUTHDOMAIN,
