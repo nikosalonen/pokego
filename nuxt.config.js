@@ -8,9 +8,7 @@ export default {
     FIRESTORE_STORAGEBUCKET: process.env.FIRESTORE_STORAGEBUCKET,
     FIRESTORE_MESSAGINGSENDERID: process.env.FIRESTORE_MESSAGINGSENDERID,
     FIRESTORE_APPID: process.env.FIRESTORE_APPID,
-    FIRESTORE_MEASUREMENTID: process.env.FIRESTORE_MEASUREMENTID,
-    RECAPTCHA_SITEKEY: process.env.RECAPTCHA_SITEKEY,
-    RECAPTCHA_SECRET: process.env.RECAPTCHA_SECRET
+    FIRESTORE_MEASUREMENTID: process.env.FIRESTORE_MEASUREMENTID
   },
   /*
    ** Headers of the page
@@ -57,16 +55,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv',
-    // https://www.npmjs.com/package/nuxt-recaptcha
-    [
-      '@nuxtjs/recaptcha',
-      {
-        hideBadge: true,
-        version: 3,
-        siteKey: '6LdR7c8UAAAAAHeGUi7a2QY1dfOhtBnjI4-Y4wlN'
-      }
-    ]
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Axios module configuration
