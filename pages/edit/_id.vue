@@ -10,6 +10,7 @@
             <input
               id="code1"
               ref="code1"
+              @paste="onPaste"
               v-model="user.code[0]"
               maxlength="4"
               minlength="4"
@@ -101,6 +102,21 @@ export default {
     return { user }
   },
   methods: {
+    onPaste(e) {
+      const paste = (event.clipboardData || window.clipboardData)
+        .getData('text')
+        .replace(/\D/g, '')
+
+      if (paste.length === 12) {
+        const parts = paste.match(/.{1,4}/g)
+        parts.map((obj, i) => {
+          const code = `code${i + 1}`
+          this[code] = obj
+        })
+      }
+      // eslint-disable-next-line
+      console.log(paste)
+    },
     updateFirestore() {
       fireDB
         .collection('users')
