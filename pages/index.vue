@@ -148,8 +148,6 @@ export default {
           this[code] = obj
         })
       }
-      // eslint-disable-next-line
-      console.log(paste)
     },
     checkLength(e) {
       // eslint-disable-next-line

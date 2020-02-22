@@ -114,8 +114,6 @@ export default {
           this[code] = obj
         })
       }
-      // eslint-disable-next-line
-      console.log(paste)
     },
     updateFirestore() {
       fireDB

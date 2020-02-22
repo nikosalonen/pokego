@@ -71,8 +71,6 @@ export default {
           return user.data()
         }
       })
-    // eslint-disable-next-line
-    console.log(user)
 
     if (typeof user === 'undefined') {
       return { errors: '404' }
