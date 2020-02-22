@@ -90,5 +90,5 @@ sw.*
 *.swp
 
 # Firebase cache files
-.firebase/*.cache
+/.firebase
 
