@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/analytics'
+import 'firebase/auth'
 if (!firebase.apps.length) {
   const config = {
     apiKey: process.env.FIRESTORE_APIKEY,
@@ -12,7 +13,20 @@ if (!firebase.apps.length) {
     appId: process.env.FIRESTORE_APPID,
     measurementId: process.env.FIRESTORE_MEASUREMENTID
   }
+
   firebase.initializeApp(config)
+
+  firebase
+    .auth()
+    .signInAnonymously()
+    .catch(function(error) {
+      // Handle Errors here.
+      const errorCode = error.code
+      const errorMessage = error.message
+      // eslint-disable-next-line
+      console.log(errorCode, errorMessage)
+      // ...
+    })
   firebase.firestore()
   firebase.analytics()
 }
