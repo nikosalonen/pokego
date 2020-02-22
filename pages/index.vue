@@ -30,7 +30,7 @@
     </div>
     <div class="mt-4 flex flex-col">
       <h2>My friend code is:</h2>
-      <form id="form" @submit="checkForm" class="max-w">
+      <form id="form" @submit.prevent="checkForm" class="max-w">
         <div class="flex flex-wrap mb-2">
           <div class="w-1/3 px-1 sm:px-3 mb-6 md:mb-0">
             <input
@@ -135,6 +135,9 @@ export default {
       SITE_URL: process.env.SITE_URL
     }
   },
+  async mounted() {
+    await this.$recaptcha.init()
+  },
   methods: {
     onPaste(e) {
       const paste = (event.clipboardData || window.clipboardData)
@@ -162,24 +165,64 @@ export default {
         }
       }
     },
-    checkForm(e) {
-      e.preventDefault()
-      this.errors = []
-      if (!this.handle) {
-        this.errors.push('Please add name')
-      }
+    async verifyToken(token) {
+      try {
+        const result = await this.$axios({
+          method: 'post',
+          url: '/api/',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: {
+            response: token
+          }
+        })
 
-      const regex = /^\d{4}$/
-      if (
-        !this.code1.match(regex) ||
-        !this.code2.match(regex) ||
-        !this.code3.match(regex)
-      ) {
-        this.errors.push('Each part of the code should be 4 numbers long')
+        return result.data.success
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
       }
-      if (!this.errors.length) {
-        this.writeToFirestore()
-        return true
+    },
+    async getToken() {
+      try {
+        const token = await this.$recaptcha.execute('login')
+
+        return token
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log('Login error:', error)
+      }
+    },
+    async checkForm(e) {
+      try {
+        const token = await this.getToken()
+
+        const result = await this.verifyToken(token)
+
+        if (!result) {
+          this.errors.push("ReCaptcha didn't pass validation, are you a robot?")
+        }
+        this.errors = []
+        if (!this.handle) {
+          this.errors.push('Please add name')
+        }
+
+        const regex = /^\d{4}$/
+        if (
+          !this.code1.match(regex) ||
+          !this.code2.match(regex) ||
+          !this.code3.match(regex)
+        ) {
+          this.errors.push('Each part of the code should be 4 numbers long')
+        }
+        if (!this.errors.length) {
+          this.writeToFirestore()
+          return true
+        }
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log('Login error:', error)
       }
     },
     async checkHandle() {

@@ -8,8 +8,11 @@ export default {
     FIRESTORE_STORAGEBUCKET: process.env.FIRESTORE_STORAGEBUCKET,
     FIRESTORE_MESSAGINGSENDERID: process.env.FIRESTORE_MESSAGINGSENDERID,
     FIRESTORE_APPID: process.env.FIRESTORE_APPID,
-    FIRESTORE_MEASUREMENTID: process.env.FIRESTORE_MEASUREMENTID
+    FIRESTORE_MEASUREMENTID: process.env.FIRESTORE_MEASUREMENTID,
+    RECAPTCHA_SITEKEY: process.env.RECAPTCHA_SITEKEY,
+    RECAPTCHA_SECRET: process.env.RECAPTCHA_SECRET
   },
+  serverMiddleware: ['~/api/index.js'],
   /*
    ** Headers of the page
    */
@@ -53,15 +56,34 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/recaptcha'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: true
+  },
+
+  proxy: {
+    '/api/': {
+      target: 'https://pokego.codes/api',
+      pathRewrite: { '^/api/': '' },
+      changeOrigin: true
+    }
+  },
+  /* reCAPTCHA options */
+  recaptcha: {
+    hideBadge: false, // Hide badge element (v3 & v2 via size=invisible)
+    siteKey: '6LdR7c8UAAAAAHeGUi7a2QY1dfOhtBnjI4-Y4wlN', // Site key for requests
+    version: 3 // Version
+  },
+
   /*
    ** Build configuration
    */
