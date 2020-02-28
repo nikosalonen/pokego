@@ -5,6 +5,12 @@
 ## Build Setup
 
 ``` bash
+
+# copy .env.example to .env
+cp .env.example .env
+
+# fill the fields in order to use Firebase
+
 # install dependencies
 $ yarn install
 
