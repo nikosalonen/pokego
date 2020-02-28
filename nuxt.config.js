@@ -1,5 +1,6 @@
 export default {
   mode: 'spa',
+  dev: process.env.NODE_ENV !== 'production',
   env: {
     FIRESTORE_APIKEY: process.env.FIRESTORE_APIKEY,
     FIRESTORE_AUTHDOMAIN: process.env.FIRESTORE_AUTHDOMAIN,
@@ -10,6 +11,7 @@ export default {
     FIRESTORE_APPID: process.env.FIRESTORE_APPID,
     FIRESTORE_MEASUREMENTID: process.env.FIRESTORE_MEASUREMENTID,
     RECAPTCHA_SITEKEY: process.env.RECAPTCHA_SITEKEY,
+    RECAPTCHA_DEMOKEY: process.env.RECAPTCHA_DEMOKEY,
     RECAPTCHA_SECRET: process.env.RECAPTCHA_SECRET
   },
   serverMiddleware: ['~/api/index.js'],
@@ -80,7 +82,10 @@ export default {
   /* reCAPTCHA options */
   recaptcha: {
     hideBadge: false, // Hide badge element (v3 & v2 via size=invisible)
-    siteKey: '6LdR7c8UAAAAAHeGUi7a2QY1dfOhtBnjI4-Y4wlN', // Site key for requests
+    siteKey:
+      process.env.NODE_ENV === 'production'
+        ? process.env.RECAPTCHA_SITEKEY
+        : process.env.RECAPTCHA_DEMOKEY, // Site key for requests
     version: 3 // Version
   },
 

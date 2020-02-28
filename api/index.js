@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const axios = require('axios')
 require('dotenv').config()
+const config = require('./nuxt.config.js')
 const app = express()
 app.use(
   bodyParser.urlencoded({
@@ -11,6 +12,10 @@ app.use(
 )
 app.use(express.json())
 app.post('/', async (req, res) => {
+  if (config.dev) {
+    res.send({ success: 'true' })
+    return true
+  }
   const verifyUrl = 'https://www.google.com/recaptcha/api/siteverify'
   const data = await postData(verifyUrl, req.body).then((data) => data)
 
