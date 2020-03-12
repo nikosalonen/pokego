@@ -3,7 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const axios = require('axios')
 require('dotenv').config()
-const config = require('./nuxt.config.js')
+const config = require('./../nuxt.config.js')
 const app = express()
 app.use(
   bodyParser.urlencoded({
