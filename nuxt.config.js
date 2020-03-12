@@ -74,7 +74,8 @@ export default {
     proxy: true
   },
   'google-adsense': {
-    id: process.env.ADSENSE
+    id: process.env.ADSENSE,
+    pageLevelAds: true
   },
   proxy: {
     '/api/': {
