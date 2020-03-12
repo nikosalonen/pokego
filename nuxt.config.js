@@ -12,7 +12,8 @@ export default {
     FIRESTORE_MEASUREMENTID: process.env.FIRESTORE_MEASUREMENTID,
     RECAPTCHA_SITEKEY: process.env.RECAPTCHA_SITEKEY,
     RECAPTCHA_DEMOKEY: process.env.RECAPTCHA_DEMOKEY,
-    RECAPTCHA_SECRET: process.env.RECAPTCHA_SECRET
+    RECAPTCHA_SECRET: process.env.RECAPTCHA_SECRET,
+    ADSENSE: process.env.ADSENSE
   },
   serverMiddleware: ['~/api/index.js'],
   /*
@@ -62,7 +63,8 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    '@nuxtjs/recaptcha'
+    '@nuxtjs/recaptcha',
+    '@nuxtjs/google-adsense'
   ],
   /*
    ** Axios module configuration
@@ -71,7 +73,9 @@ export default {
   axios: {
     proxy: true
   },
-
+  'google-adsense': {
+    id: process.env.ADSENSE
+  },
   proxy: {
     '/api/': {
       target: 'https://pokego.codes/api',
