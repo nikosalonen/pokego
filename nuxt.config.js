@@ -73,10 +73,10 @@ export default {
   axios: {
     proxy: true
   },
-  'google-adsense': {
-    id: process.env.ADSENSE,
-    pageLevelAds: true
-  },
+  // 'google-adsense': {
+  //   id: process.env.ADSENSE,
+  //   pageLevelAds: true
+  // },
   proxy: {
     '/api/': {
       target: 'https://pokego.codes/api',
