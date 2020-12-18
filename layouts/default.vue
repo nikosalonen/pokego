@@ -15,17 +15,7 @@
         </div>
       </div>
       <div class="w-1/2 flex m-auto pt-10">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://brave.com/pok897"
-        >
-          <img
-            src="~/static/switch_banner_1@2x.png"
-            alt="Download Brave Browser"
-            title="Download Brave Browser"
-          />
-        </a>
+
       </div>
       <div>
         <div class="text-center text-xs text-gray-900 m-auto pt-5">
