@@ -7,7 +7,7 @@ const config = require('./../nuxt.config.js')
 const app = express()
 app.use(
   bodyParser.urlencoded({
-    extended: true
+    extended: true,
   })
 )
 app.use(express.json())
@@ -30,13 +30,13 @@ async function postData(url = '', data = {}) {
     url: `${url}?secret=${process.env.RECAPTCHA_SECRET}&response=${urldata.response}`,
 
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-    }
+      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+    },
   })
-    .then(function(response) {
+    .then(function (response) {
       return response.data.success
     })
-    .catch(function(error) {
+    .catch(function (error) {
       // eslint-disable-next-line no-console
       console.log(error)
       return false
@@ -47,5 +47,5 @@ async function postData(url = '', data = {}) {
 
 module.exports = {
   path: '/api/',
-  handler: app
+  handler: app,
 }

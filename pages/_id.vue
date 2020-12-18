@@ -50,16 +50,8 @@
 <script>
 import { fireDB } from '~/plugins/firebase.js'
 export default {
-  layout: 'default',
   components: {},
-  data() {
-    return {
-      errors: [],
-      user: {},
-      result: '',
-      canvas: ''
-    }
-  },
+  layout: 'default',
   async asyncData({ params, error }) {
     const user = await fireDB
       .collection('users')
@@ -80,6 +72,14 @@ export default {
     }
     return { user }
   },
+  data() {
+    return {
+      errors: [],
+      user: {},
+      result: '',
+      canvas: '',
+    }
+  },
   mounted() {
     if (process.browser && this.user && this.user.code) {
       const QRCode = require('qrcode')
@@ -93,7 +93,7 @@ export default {
       )
     }
   },
-  methods: {}
+  methods: {},
 }
 </script>
 

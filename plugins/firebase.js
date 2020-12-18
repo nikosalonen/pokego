@@ -11,7 +11,7 @@ if (!firebase.apps.length) {
     storageBucket: process.env.FIRESTORE_STORAGEBUCKET,
     messagingSenderId: process.env.FIRESTORE_MESSAGINGSENDERID,
     appId: process.env.FIRESTORE_APPID,
-    measurementId: process.env.FIRESTORE_MEASUREMENTID
+    measurementId: process.env.FIRESTORE_MEASUREMENTID,
   }
 
   firebase.initializeApp(config)
@@ -19,7 +19,7 @@ if (!firebase.apps.length) {
   firebase
     .auth()
     .signInAnonymously()
-    .catch(function(error) {
+    .catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code
       const errorMessage = error.message

@@ -12,7 +12,7 @@ export default {
     FIRESTORE_MEASUREMENTID: process.env.FIRESTORE_MEASUREMENTID,
     RECAPTCHA_SITEKEY: process.env.RECAPTCHA_SITEKEY,
     RECAPTCHA_DEMOKEY: process.env.RECAPTCHA_DEMOKEY,
-    RECAPTCHA_SECRET: process.env.RECAPTCHA_SECRET
+    RECAPTCHA_SECRET: process.env.RECAPTCHA_SECRET,
     // ADSENSE: process.env.ADSENSE
   },
   serverMiddleware: ['~/api/index.js'],
@@ -27,10 +27,10 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/pokeball.png' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/pokeball.png' }],
   },
   /*
    ** Customize the progress-bar color
@@ -51,7 +51,7 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
   ],
   /*
    ** Nuxt.js modules
@@ -63,7 +63,7 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    '@nuxtjs/recaptcha'
+    '@nuxtjs/recaptcha',
     // '@nuxtjs/google-adsense'
   ],
   /*
@@ -71,7 +71,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    proxy: true
+    proxy: true,
   },
   // 'google-adsense': {
   //   id: process.env.ADSENSE,
@@ -81,8 +81,8 @@ export default {
     '/api/': {
       target: 'https://pokego.codes/api',
       pathRewrite: { '^/api/': '' },
-      changeOrigin: true
-    }
+      changeOrigin: true,
+    },
   },
   /* reCAPTCHA options */
   recaptcha: {
@@ -91,7 +91,7 @@ export default {
       process.env.NODE_ENV === 'production'
         ? process.env.RECAPTCHA_SITEKEY
         : process.env.RECAPTCHA_DEMOKEY, // Site key for requests
-    version: 3 // Version
+    version: 3, // Version
   },
 
   /*
@@ -110,12 +110,12 @@ export default {
             // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
             {
               buildTarget: isServer ? 'server' : 'client',
-              corejs: { version: 3 }
-            }
-          ]
+              corejs: { version: 3 },
+            },
+          ],
         ]
-      }
+      },
     },
-    extend(config, ctx) {}
-  }
+    extend(config, ctx) {},
+  },
 }

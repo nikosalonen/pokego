@@ -4,18 +4,18 @@
 
     <div class="mt-4 flex flex-col">
       <h2>Your friend code is:</h2>
-      <form id="form" @submit="updateUser" class="max-w">
+      <form id="form" class="max-w" @submit="updateUser">
         <div class="flex flex-wrap mb-2">
           <div class="w-1/3 px-3 mb-6 md:mb-0">
             <input
               id="code1"
               ref="code1"
-              @paste="onPaste"
               v-model="user.code[0]"
               maxlength="4"
               minlength="4"
               type="text"
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              @paste="onPaste"
             />
           </div>
           <div class="w-1/3 px-3 mb-6 md:mb-0">
@@ -48,7 +48,7 @@
         >
           <b>Please correct the following error(s):</b>
           <ul>
-            <li v-for="error in errors">{{ error }}</li>
+            <li v-for="error in errors" :key="error">{{ error }}</li>
           </ul>
         </div>
         <div class="mt-4 flex justify-end">
@@ -78,15 +78,8 @@
 <script>
 import { fireDB } from '~/plugins/firebase.js'
 export default {
-  layout: 'default',
   components: {},
-  data() {
-    return {
-      errors: [],
-      user: {},
-      result: ''
-    }
-  },
+  layout: 'default',
   async asyncData({ params, error }) {
     const user = await fireDB
       .collection('users')
@@ -101,6 +94,13 @@ export default {
 
     return { user }
   },
+  data() {
+    return {
+      errors: [],
+      user: {},
+      result: '',
+    }
+  },
   methods: {
     onPaste(e) {
       const paste = (event.clipboardData || window.clipboardData)
@@ -111,7 +111,7 @@ export default {
         const parts = paste.match(/.{1,4}/g)
         parts.map((obj, i) => {
           const code = `code${i + 1}`
-          this[code] = obj
+          return (this[code] = obj)
         })
       }
     },
@@ -120,7 +120,7 @@ export default {
         .collection('users')
         .doc(this.$route.params.id)
         .update({
-          code: Number(this.user.code.join(''))
+          code: Number(this.user.code.join('')),
         })
         .then(() => {
           this.result = true
@@ -144,8 +144,8 @@ export default {
         this.updateFirestore()
         return true
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

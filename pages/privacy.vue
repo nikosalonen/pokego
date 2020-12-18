@@ -9,5 +9,5 @@
   </div>
 </template>
 <script>
-export default { layout: 'default', components: {}, data() {} }
+export default { components: {}, layout: 'default', data() {} }
 </script>

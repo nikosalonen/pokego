@@ -30,19 +30,19 @@
     </div>
     <div class="mt-4 flex flex-col">
       <h2>My friend code is:</h2>
-      <form id="form" @submit.prevent="checkForm" class="max-w">
+      <form id="form" class="max-w" @submit.prevent="checkForm">
         <div class="flex flex-wrap mb-2">
           <div class="w-1/3 px-1 sm:px-3 mb-6 md:mb-0">
             <input
               id="code1"
               ref="code1"
-              @paste="onPaste"
-              v-on:keyup="checkLength"
               v-model="code1"
               maxlength="4"
               minlength="4"
               type="text"
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              @paste="onPaste"
+              @keyup="checkLength"
             />
           </div>
           <div class="w-1/3 px-1 sm:px-3 mb-6 md:mb-0">
@@ -50,11 +50,11 @@
               id="code2"
               ref="code2"
               v-model="code2"
-              v-on:keyup="checkLength"
               maxlength="4"
               minlength="4"
               type="text"
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              @keyup="checkLength"
             />
           </div>
           <div class="w-1/3 px-1 sm:px-3 mb-6 md:mb-0">
@@ -62,11 +62,11 @@
               id="code3"
               ref="code3"
               v-model="code3"
-              v-on:keyup="checkLength"
               maxlength="4"
               minlength="4"
               type="text"
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              @keyup="checkLength"
             />
           </div>
         </div>
@@ -77,7 +77,7 @@
         >
           <b>Please correct the following error(s):</b>
           <ul>
-            <li v-for="error in errors">{{ error }}</li>
+            <li v-for="error in errors" :key="error">{{ error }}</li>
           </ul>
         </div>
         <div class="mt-4 flex justify-end">
@@ -120,8 +120,8 @@
 <script>
 import { fireDB } from '~/plugins/firebase.js'
 export default {
-  layout: 'default',
   components: {},
+  layout: 'default',
   data() {
     return {
       errors: [],
@@ -132,7 +132,7 @@ export default {
       result: '',
       editPageLink: '',
       userPageLink: '',
-      SITE_URL: process.env.SITE_URL
+      SITE_URL: process.env.SITE_URL,
     }
   },
   async mounted() {
@@ -148,7 +148,7 @@ export default {
         const parts = paste.match(/.{1,4}/g)
         parts.map((obj, i) => {
           const code = `code${i + 1}`
-          this[code] = obj
+          return (this[code] = obj)
         })
       }
     },
@@ -171,11 +171,11 @@ export default {
           method: 'post',
           url: '/api/',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
           data: {
-            response: token
-          }
+            response: token,
+          },
         })
 
         return result.data.success
@@ -243,7 +243,7 @@ export default {
           .collection('users')
           .add({
             handle: this.handle.toLowerCase(),
-            code: Number(this.code1 + '' + this.code2 + '' + this.code3)
+            code: Number(this.code1 + '' + this.code2 + '' + this.code3),
           })
           .then((res) => {
             this.result = res.id
@@ -255,8 +255,8 @@ export default {
       } else {
         this.errors.push('Handle taken, maybe try another?')
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
