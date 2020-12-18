@@ -10,13 +10,11 @@
             />
           </nuxt-link>
         </div>
-        <div class="mt-4  text-center sm:text-left">
+        <div class="mt-4 text-center sm:text-left">
           <nuxt />
         </div>
       </div>
-      <div class="w-1/2 flex m-auto pt-10">
-
-      </div>
+      <div class="w-1/2 flex m-auto pt-10"></div>
       <div>
         <div class="text-center text-xs text-gray-900 m-auto pt-5">
           This site is not affiliated with Niantic, Inc. and is only a tool to
@@ -45,5 +43,3 @@
     </div>
   </div>
 </template>
-
-<style></style>
